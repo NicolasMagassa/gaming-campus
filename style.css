@@ -302,6 +302,45 @@
     max-width: 1000px;
     margin: 0 auto;
   }
+
+  /***** bouton de basculement du mode sombre *******/
+#dark-mode-toggle {
+    padding: 8px 16px; 
+    background-color: #333; 
+    color: #fff; 
+    border-radius: 5px; /
+    margin-left: 10px; 
+  }
+  
+  /* bouton quand le mode sombre est activé */
+  body.dark-mode #dark-mode-toggle {
+    background-color: #fff; 
+    color: #333; 
+  }
+
+  /****regle pour le mode sombre ****/
+
+  /* Styles par défaut */
+body {
+    background-color: white; /* Couleur de fond par défaut */
+    color: black; /* Couleur de texte par défaut */
+  }
+  
+  /* Styles pour le mode sombre */
+  body.dark-mode {
+    background-color: #121212; /* Fond sombre */
+    color: #e0e0e0; /* Texte clair */
+  }
+  
+  /* autres éléments pour le mode sombre */
+  body.dark-mode nav {
+    background-color: #333; 
+  }
+  
+  body.dark-mode a {
+    color: #bb86fc; 
+  }
+  
   
   /* *********** MEDIA QUERIES *************** */
   
