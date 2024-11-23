@@ -1,35 +1,27 @@
-// Avant toute chose, pour vérifier que le script est chargé
-console.log("Le script est chargé.");
-
-// Sélectionne le bouton qui bascule en dark mode
 const toggleButton = document.getElementById('dark-mode-toggle');
+const icon = document.getElementById('dark-mode-icon');
 
-// Vérifie si le bouton a bien été trouvé
-console.log("Bouton trouvé :", toggleButton);
-
-// Fonction pour basculer le mode sombre
-function toggleDarkMode() {
-  console.log("Basculement du mode sombre activé."); // Pour voir quand la fonction est appelée
+// Écouteur d'événements pour basculer le mode sombre
+toggleButton.addEventListener('click', () => {
   document.body.classList.toggle('dark-mode');
-  
-  // Sauvegarder le mode dans localStorage
+
+  // Basculer dynamiquement entre lune et soleil
   if (document.body.classList.contains('dark-mode')) {
-    localStorage.setItem('darkMode', 'enabled');
+    icon.textContent = 'dark_mode'; // Icône lune
+    localStorage.setItem('darkMode', 'enabled'); // Sauvegarder état sombre
   } else {
-    localStorage.setItem('darkMode', 'disabled');
+    icon.textContent = 'light_mode'; // Icône soleil
+    localStorage.setItem('darkMode', 'disabled'); // Sauvegarder état clair
   }
-}
+});
 
-// écouteur d'événements au bouton
-if(toggleButton) { // Vérifie si toggleButton n'est pas null avant d'ajouter l'écouteur
-  toggleButton.addEventListener('click', toggleDarkMode);
-} else {
-  console.log("Erreur: Le bouton #dark-mode-toggle n'a pas été trouvé dans le DOM.");
-}
-
-// Vérification localStorage pour le mode sombre au chargement de la page
-if (localStorage.getItem('darkMode') === 'enabled') {
-  console.log("Mode sombre activé au chargement de la page.");
-  document.body.classList.add('dark-mode');
-}
-
+// Initialisation : Appliquer le mode sombre si activé dans localStorage
+document.addEventListener('DOMContentLoaded', () => {
+  const darkModeState = localStorage.getItem('darkMode');
+  if (darkModeState === 'enabled') {
+    document.body.classList.add('dark-mode');
+    icon.textContent = 'dark_mode'; // Icône lune
+  } else {
+    icon.textContent = 'light_mode'; // Icône soleil
+  }
+});
